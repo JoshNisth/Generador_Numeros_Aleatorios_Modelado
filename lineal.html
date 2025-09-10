@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algoritmo Lineal - Generador de Números Aleatorios</title>
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css" />
+</head>
+<body data-page="lineal">
+  <header>
+    <div class="nav-bar">
+  <div class="brand"><i class="fi fi-rr-world brand-icon" aria-hidden="true"></i> Generador de Números Aleatorios</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lineal.html" class="active">Algoritmo Lineal</a></li>
+          <li><a href="multiplicativo.html">Algoritmo Multiplicativo</a></li>
+          <li><a href="ayuda.html">Ayuda (?)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="active">
+      <div class="panel">
+        <h2>Algoritmo Lineal</h2>
+        <div class="form-container">
+          <form id="form-lineal" autocomplete="off" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="lin-x0">X₀ (Semilla)</label>
+                <input id="lin-x0" name="x0" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="lin-k">K (Constante multiplicativa)</label>
+                <input id="lin-k" name="k" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="lin-c">C (Constante aditiva)</label>
+                <input id="lin-c" name="c" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="lin-p">P (Período)</label>
+                <input id="lin-p" name="p" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="lin-d">D (Decimales rᵢ)</label>
+                <input id="lin-d" name="d" type="number" min="0" max="15" value="4" inputmode="numeric" required />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="primary" id="btn-lin-generar">Generar</button>
+              <button type="button" class="danger" id="btn-lin-limpiar">Limpiar</button>
+            </div>
+          </form>
+          <div id="lineal-alerts" class="alerts" aria-live="polite"></div>
+          <div id="lineal-vars-placeholder"></div>
+        </div>
+
+        <div class="results-container">
+          <div class="table-wrapper">
+            <table id="tabla-lineal" aria-describedby="desc-lineal">
+            <thead>
+              <tr>
+                <th>i</th>
+                <th>Xᵢ₋₁</th>
+                <th>Operación</th>
+                <th>Xᵢ</th>
+                <th>rᵢ</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <caption id="desc-lineal">Resultados de iteraciones del algoritmo lineal</caption>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="clouds" aria-hidden="true"></div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+  <script src="js/lineal.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algoritmo Congruencial Multiplicativo - Generador</title>
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="multiplicativo">
+  <header>
+    <div class="nav-bar">
+  <div class="brand"><i class="fi fi-rr-world brand-icon" aria-hidden="true"></i> Generador de Números Aleatorios</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lineal.html">Algoritmo Lineal</a></li>
+            <li><a href="multiplicativo.html" class="active">Algoritmo Multiplicativo</a></li>
+          <li><a href="ayuda.html">Ayuda (?)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="active">
+      <div class="panel">
+        <h2>Algoritmo Congruencial Multiplicativo</h2>
+        <form id="form-multi" autocomplete="off">
+          <div class="field">
+            <label for="mul-x0">X₀ (Semilla)</label>
+            <input id="mul-x0" name="x0" type="number" inputmode="numeric" required />
+          </div>
+          <div class="field">
+            <label for="mul-k">K (Constante)</label>
+            <input id="mul-k" name="k" type="number" inputmode="numeric" required />
+          </div>
+          <div class="field">
+            <label>Seleccionar a</label>
+            <div class="inline-group" role="radiogroup" aria-label="Fórmula multiplicador">
+              <label><input type="radio" name="formula-a" value="3" checked /> a = 3 + 8k</label>
+              <label><input type="radio" name="formula-a" value="5" /> a = 5 + 8k</label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="mul-p">P (Período)</label>
+            <input id="mul-p" name="p" type="number" inputmode="numeric" required />
+          </div>
+          <div class="field">
+            <label for="mul-d">D (Decimales rᵢ)</label>
+            <input id="mul-d" name="d" type="number" min="0" max="15" value="4" inputmode="numeric" required />
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" id="btn-mul-generar">Generar</button>
+            <button type="button" class="danger" id="btn-mul-limpiar">Limpiar</button>
+          </div>
+        </form>
+        <div class="table-wrapper">
+          <table id="tabla-multi" aria-describedby="desc-multi">
+            <thead>
+              <tr>
+                <th>i</th>
+                <th>Xᵢ₋₁</th>
+                <th>Operación</th>
+                <th>Xᵢ</th>
+                <th>rᵢ</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <caption id="desc-multi">Resultados de iteraciones del algoritmo multiplicativo</caption>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="clouds" aria-hidden="true"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

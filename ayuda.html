@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayuda - Generador de Números Aleatorios</title>
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="ayuda">
+  <header>
+    <div class="nav-bar">
+  <div class="brand"><i class="fi fi-rr-world brand-icon" aria-hidden="true"></i> Generador de Números Aleatorios</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lineal.html">Algoritmo Lineal</a></li>
+          <li><a href="multiplicativo.html">Algoritmo Multiplicativo</a></li>
+          <li><a href="ayuda.html" class="active">Ayuda (?)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="active">
+      <div class="panel">
+        <h2>Ayuda</h2>
+        <p>Guía rápida de parámetros y uso:</p>
+        <ul class="help-list">
+          <li class="help-item">
+            <h3>X₀ (Semilla)</h3>
+            <p>Primer valor de la secuencia. Debe elegirse cuidadosamente para asegurar un buen ciclo pseudoaleatorio.</p>
+          </li>
+          <li class="help-item">
+            <h3>K</h3>
+            <p>Constante usada para construir el multiplicador (a) o directamente multiplicar (según el método).</p>
+          </li>
+          <li class="help-item">
+            <h3>C</h3>
+            <p>Constante aditiva en el algoritmo lineal. Si se omite o vale 0, se asemeja al método multiplicativo.</p>
+          </li>
+          <li class="help-item">
+            <h3>P (Período)</h3>
+            <p>Cantidad de valores a generar o tamaño máximo esperado del ciclo antes de repetirse.</p>
+          </li>
+          <li class="help-item">
+            <h3>D (Decimales)</h3>
+            <p>Precisión de los valores normalizados rᵢ (entre 0 y 1). Ajusta la representación en la tabla.</p>
+          </li>
+          <li class="help-item">
+            <h3>Operación</h3>
+            <p>Fórmula aplicada para pasar de Xᵢ₋₁ a Xᵢ. Aquí se mostrará de forma descriptiva cada paso.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div class="clouds" aria-hidden="true"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
