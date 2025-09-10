@@ -69,6 +69,8 @@ button.primary:hover { background: var(--blue-hover); }
 button.danger { background: var(--red); color: var(--white); }
 button.danger:hover { background: var(--red-hover); }
 button:active { scale: .96; }
+button.success { background: #16a34a; color: #fff; }
+button.success:hover { background: #138a3f; }
 
 /* Table */
 .table-wrapper { width: 100%; overflow-x: auto; border-radius: var(--radius); border: 1px solid #d5e2df; background: #fff; box-shadow: 0 2px 8px -4px rgba(0,0,0,.08); }
@@ -140,12 +142,13 @@ tbody tr.cycle-end { background: #fff7cc !important; box-shadow: inset 0 0 0 2px
 /* Ensure Lineal form buttons are below the inputs grid (not inside the same row) */
 #form-lineal { display: block; margin-bottom: .25rem; }
 #form-lineal .form-grid { margin-bottom: .25rem; }
-#form-lineal .form-actions { margin-top: .25rem; justify-content: center; }
+#form-lineal .form-actions { margin-top: 1rem; justify-content: center; }
+#form-lineal .form-actions { margin-bottom: .35rem; }
 
 /* Slightly denser layout on Lineal page */
 body[data-page="lineal"] .form-container { gap: .6rem; }
 body[data-page="lineal"] #lineal-alerts:empty { display: none; }
-body[data-page="lineal"] #lineal-vars-placeholder .vars-strip { margin-top: .4rem; margin-bottom: .2rem; }
+body[data-page="lineal"] #lineal-vars-placeholder .vars-strip { margin-top: .2rem; margin-bottom: .2rem; }
 
 /* Widen outputs columns (Operación and rᵢ) for better readability */
 #tabla-lineal th:nth-child(3),
@@ -153,9 +156,15 @@ body[data-page="lineal"] #lineal-vars-placeholder .vars-strip { margin-top: .4re
 #tabla-lineal th:nth-child(5),
 #tabla-lineal td:nth-child(5) { min-width: 140px; }
 
+/* Formula box under actions */
+.formula-box { margin-top: .4rem; margin-bottom: .25rem; padding: .75rem 1rem; background: #f1faf7; border: 1px solid #cee9e3; border-radius: .75rem; color: #0f3430; display: grid; gap: .35rem; }
+.formula-box .katex-display { margin: .25rem 0; }
+.formula-box .katex-display > .katex { font-size: 1.15rem; }
+.formula-box { justify-items: center; text-align: center; }
+
 /* Button polish and interactions */
 #form-lineal .form-actions button {
-  padding: .8rem 1.35rem;
+  padding: .9rem 1.5rem;
   border-radius: .7rem;
   box-shadow: 0 6px 16px -6px rgba(0,0,0,.25);
   transition: transform .18s ease, box-shadow .18s ease, background-color var(--transition);
@@ -169,4 +178,18 @@ body[data-page="lineal"] #lineal-vars-placeholder .vars-strip { margin-top: .4re
 #form-lineal .form-actions .primary:hover { background: linear-gradient(180deg, #2a90ff, #0a64c8); }
 #form-lineal .form-actions .danger { background: linear-gradient(180deg, #ef3b4b, #c82333); }
 #form-lineal .form-actions .danger:hover { background: linear-gradient(180deg, #ff4d5d, #b81f2d); }
+#form-lineal .form-actions .success { background: linear-gradient(180deg, #19b456, #138a3f); }
+#form-lineal .form-actions .success:hover { background: linear-gradient(180deg, #2ac369, #0f7636); }
 #form-lineal .form-actions button:focus-visible { outline: 3px solid #8adbd0; outline-offset: 2px; }
+
+/* Centered modal for validation */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: grid; place-items: center; z-index: 10000; animation: fadeIn .18s ease; padding: 1rem; }
+.modal { width: min(560px, 92vw); background: #ffffff; border-radius: .9rem; box-shadow: 0 20px 60px -20px rgba(0,0,0,.45); border: 1px solid #e5efec; overflow: hidden; }
+.modal header { background: linear-gradient(90deg,#1a4a43,#22665c); color: #fff; padding: .85rem 1rem; }
+.modal header h3 { margin: 0; font-size: 1rem; letter-spacing: .3px; }
+.modal .content { padding: 1rem 1rem 1.1rem; color: #18332f; }
+.modal .content ul { margin: .25rem 0 0; padding-left: 1.1rem; display: grid; gap: .4rem; }
+.modal footer { display: flex; justify-content: flex-end; gap: .6rem; padding: .8rem 1rem 1rem; }
+.modal .btn { border: none; padding: .55rem 1rem; border-radius: .55rem; font-weight: 700; cursor: pointer; }
+.modal .btn.primary { background: #1a4a43; color: #fff; }
+.modal .btn.primary:hover { background: #18433d; }

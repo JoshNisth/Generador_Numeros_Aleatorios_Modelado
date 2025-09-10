@@ -6,7 +6,7 @@
   <title>Algoritmo Lineal - Generador de Números Aleatorios</title>
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
 </head>
 <body data-page="lineal">
   <header>
@@ -53,6 +53,11 @@
             <div class="form-actions">
               <button type="button" class="primary" id="btn-lin-generar">Generar</button>
               <button type="button" class="danger" id="btn-lin-limpiar">Limpiar</button>
+              <button type="button" class="success" id="btn-lin-export">Exportar Excel</button>
+            </div>
+            <div class="formula-box" id="lineal-formulas" aria-live="polite">
+              $$X_{i+1} = (a X_i + c) \mod(m)$$
+              $$r_i = \dfrac{X_i}{m - 1}$$
             </div>
           </form>
           <div id="lineal-alerts" class="alerts" aria-live="polite"></div>
@@ -68,7 +73,7 @@
                 <th>Xᵢ₋₁</th>
                 <th>Operación</th>
                 <th>Xᵢ</th>
-                <th>rᵢ</th>
+                <th title="rᵢ = Xᵢ / (m - 1)">rᵢ</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -80,7 +85,21 @@
     </section>
   </main>
   <div class="clouds" aria-hidden="true"></div>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('lineal-formulas'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ]
+        });
+      }
+    });
+  </script>
   <script src="js/lineal.js"></script>
 </body>
 </html>
