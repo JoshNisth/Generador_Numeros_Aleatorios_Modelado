@@ -47,8 +47,14 @@
               <div class="field" style="grid-column: 1 / -1;">
                 <label>Fórmula para a</label>
                 <div class="inline-group" role="radiogroup" aria-label="Fórmula multiplicador">
-                  <label><input type="radio" name="formula-a" value="3" checked /> a = 3 + 8k</label>
-                  <label><input type="radio" name="formula-a" value="5" /> a = 5 + 8k</label>
+                  <label class="option">
+                    <input type="radio" name="formula-a" value="3" checked />
+                    <span class="option-card">$a = 3 + 8k$</span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="formula-a" value="5" />
+                    <span class="option-card">$a = 5 + 8k$</span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -94,12 +100,24 @@
   <script>
     document.addEventListener('DOMContentLoaded', function(){
       if (window.renderMathInElement) {
+        // Render main formulas block
         renderMathInElement(document.getElementById('multiplicativo-formulas'), {
           delimiters: [
             { left: '$$', right: '$$', display: true },
-            { left: '\\(', right: '\\)', display: false }
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
           ]
         });
+        // Render inline math inside the radio group
+        const rg = document.querySelector('#form-multi .inline-group');
+        if (rg) {
+          renderMathInElement(rg, {
+            delimiters: [
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false }
+            ]
+          });
+        }
       }
     });
   </script>
