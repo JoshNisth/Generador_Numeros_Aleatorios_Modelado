@@ -10,12 +10,12 @@
 <body data-page="multiplicativo">
   <header>
     <div class="nav-bar">
-  <div class="brand"><i class="fi fi-rr-world brand-icon" aria-hidden="true"></i> Generador de Números Aleatorios</div>
+      <div class="brand"><i class="fi fi-rr-world brand-icon" aria-hidden="true"></i> Generador de Números Aleatorios</div>
       <nav>
         <ul>
           <li><a href="index.html">Inicio</a></li>
           <li><a href="lineal.html">Algoritmo Lineal</a></li>
-            <li><a href="multiplicativo.html" class="active">Algoritmo Multiplicativo</a></li>
+          <li><a href="multiplicativo.html" class="active">Algoritmo Multiplicativo</a></li>
           <li><a href="ayuda.html">Ayuda (?)</a></li>
         </ul>
       </nav>
@@ -25,54 +25,84 @@
     <section class="active">
       <div class="panel">
         <h2>Algoritmo Congruencial Multiplicativo</h2>
-        <form id="form-multi" autocomplete="off">
-          <div class="field">
-            <label for="mul-x0">X₀ (Semilla)</label>
-            <input id="mul-x0" name="x0" type="number" inputmode="numeric" required />
-          </div>
-          <div class="field">
-            <label for="mul-k">K (Constante)</label>
-            <input id="mul-k" name="k" type="number" inputmode="numeric" required />
-          </div>
-          <div class="field">
-            <label>Seleccionar a</label>
-            <div class="inline-group" role="radiogroup" aria-label="Fórmula multiplicador">
-              <label><input type="radio" name="formula-a" value="3" checked /> a = 3 + 8k</label>
-              <label><input type="radio" name="formula-a" value="5" /> a = 5 + 8k</label>
+        <div class="form-container">
+          <form id="form-multi" autocomplete="off" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="mul-x0">X₀ (Semilla)</label>
+                <input id="mul-x0" name="x0" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="mul-k">K (Constante)</label>
+                <input id="mul-k" name="k" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="mul-p">P (Período)</label>
+                <input id="mul-p" name="p" type="number" inputmode="numeric" required />
+              </div>
+              <div class="field">
+                <label for="mul-d">D (Decimales rᵢ)</label>
+                <input id="mul-d" name="d" type="number" min="0" max="15" value="4" inputmode="numeric" required />
+              </div>
+              <div class="field" style="grid-column: 1 / -1;">
+                <label>Fórmula para a</label>
+                <div class="inline-group" role="radiogroup" aria-label="Fórmula multiplicador">
+                  <label><input type="radio" name="formula-a" value="3" checked /> a = 3 + 8k</label>
+                  <label><input type="radio" name="formula-a" value="5" /> a = 5 + 8k</label>
+                </div>
+              </div>
             </div>
+            <div class="form-actions">
+              <button type="button" class="primary" id="btn-mul-generar">Generar</button>
+              <button type="button" class="danger" id="btn-mul-limpiar">Limpiar</button>
+              <button type="button" class="success" id="btn-mul-export">Exportar Excel</button>
+            </div>
+            <div class="formula-box" id="multiplicativo-formulas" aria-live="polite">
+              $$X_{i+1} = (a X_i) \\mod(m)$$
+              $$r_i = \dfrac{X_i}{m - 1}$$
+            </div>
+          </form>
+          <div id="multiplicativo-alerts" class="alerts" aria-live="polite"></div>
+          <div id="multiplicativo-vars-placeholder"></div>
+        </div>
+
+        <div class="results-container">
+          <div class="table-wrapper">
+            <table id="tabla-multi" aria-describedby="desc-multi">
+              <thead>
+                <tr>
+                  <th>i</th>
+                  <th>Xᵢ₋₁</th>
+                  <th>Operación</th>
+                  <th>Xᵢ</th>
+                  <th title="rᵢ = Xᵢ / (m - 1)">rᵢ</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <caption id="desc-multi">Resultados de iteraciones del algoritmo multiplicativo</caption>
+            </table>
           </div>
-          <div class="field">
-            <label for="mul-p">P (Período)</label>
-            <input id="mul-p" name="p" type="number" inputmode="numeric" required />
-          </div>
-          <div class="field">
-            <label for="mul-d">D (Decimales rᵢ)</label>
-            <input id="mul-d" name="d" type="number" min="0" max="15" value="4" inputmode="numeric" required />
-          </div>
-          <div class="actions">
-            <button type="button" class="primary" id="btn-mul-generar">Generar</button>
-            <button type="button" class="danger" id="btn-mul-limpiar">Limpiar</button>
-          </div>
-        </form>
-        <div class="table-wrapper">
-          <table id="tabla-multi" aria-describedby="desc-multi">
-            <thead>
-              <tr>
-                <th>i</th>
-                <th>Xᵢ₋₁</th>
-                <th>Operación</th>
-                <th>Xᵢ</th>
-                <th>rᵢ</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-            <caption id="desc-multi">Resultados de iteraciones del algoritmo multiplicativo</caption>
-          </table>
         </div>
       </div>
     </section>
   </main>
   <div class="clouds" aria-hidden="true"></div>
-  <script src="js/app.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('multiplicativo-formulas'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\(', right: '\\)', display: false }
+          ]
+        });
+      }
+    });
+  </script>
+  <script src="js/multiplicativo.js"></script>
 </body>
 </html>
